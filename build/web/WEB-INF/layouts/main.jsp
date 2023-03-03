@@ -22,12 +22,22 @@
 
             <a href="<c:url value="/home/index.do"/>">Home</a> | 
             <a href="<c:url value="/home/aboutus.do"/>">About Us</a> |
-            <a href="<c:url value="/home/product.do"/>">Product</a> |
-            <a href="<c:url value="/user/login.do"/>">User-Login</a> | 
-            <a href="<c:url value="/user/register.do"/>">User-Register</a> |
-            <a href="<c:url value="/user/index.do"/>">seting</a> | 
-            <a href="<c:url value="/user/cart.do"/>">cart</a> | 
-
+            <a href="<c:url value="/home/product.do"/>">Product</a>|
+            
+            <a href="<c:url value="/user/index.do"/>">Setting</a> | 
+            <a href="<c:url value="/user/cart.do"/>">Cart</a> | 
+            <span style="float:right">
+                        <c:if test="${sessionScope.user == null}">
+                            <!--Nếu chưa login-->
+                            <a href="<c:url value="/user/login.do" />">Login</a>
+                            <a href="<c:url value="/user/register.do"/>">User-Register</a> |
+                        </c:if>
+                            <c:if test="${sessionScope.user != null}">
+                                <!--Nếu đã login-->
+                                Welcome ${sessionScope.user.fullName} |
+                                <a href="<c:url value="/user/logout.do" />">Log out</a>
+                            </c:if>
+                    </span>
 
         </div>
         <!-- end header section -->

@@ -5,30 +5,49 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <h2>register</h2>
 
-<form>
-    <label for="firstname">first name:</label>
-    <input type="text" name="firstname" id="firstname">
-    <label for="lastname">last name:</label>
-    <input type="text" placeholder="name?" name="lastname" id="lastname">
-    <label for="firstname">Phone:</label>
-    <input type="text" name="phone" id="phone">
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email" placeholder="Enter email">
-    <label for="lastname">address</label>
-    <input type="text" placeholder="address?" name="address" id="address">
-    <label for="username">user name:</label>
-    <input type="text" name="username" id="username">
-    <label for="psw">passwork</label>
-    <input type="password" name="psw" id="psw">
-    <label for="psw">passwork</label>
-    <input type="password" name="psw" id="psw">
+<form action="<c:url value="/user/register_handler.do"/>">
+    <table>
+        <tr>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        </tr>
+        </br>
+        <tr>
+        <label for="fullname">Full Name</label>
+        <input type="text" name="fullname" id="firstname">
+        </tr>
+        </br>
 
-    <label for="ngaysinh">birthday</label>
-    <input type="date" name="ngaysinh" id="ngaysinh" value="2000-11-20">
+        <tr>
+        <label for="phone">Phone:</label>
+        <input type="text" name="phone" id="phone">
+        </tr>
+        </br>
 
-    <input type="submit" value="register">
+        <tr>
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address">
+        </tr>
+        </br>
+
+        <tr>
+        <label for="psw">Password</label>
+        <input type="password" name="password" id="psw">
+        <label for="psw">Confirm Password</label>
+        <input type="password" name="confirmPassword" id="psw">
+        </tr>
+        </br>
+
+
+        <input type="submit" value="register" name="op"> 
+        <input type="submit" value="cancel" name="op"> 
+    </table>
+
 
 </form>
