@@ -1,0 +1,66 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style for the body */
+body {
+  background: linear-gradient(to right, #53a0fd, #12dbed);
+}
+
+/* Style for the container */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Style for the form container */
+.form-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+  padding: 40px;
+}
+
+/* Style for the form inputs */
+.form-input {
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+/* Style for the form button */
+.form-button {
+  background-color: #48D1CC;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Style for the form link */
+.form-link {
+  color: #48D1CC;
+  text-decoration: none;
+}
+
+/* Style for the form message */
+.message {
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+}

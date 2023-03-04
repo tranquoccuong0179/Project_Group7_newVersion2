@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Cart;
 import models.Item;
-import models.Product;
-import models.ProductFacade;
+import db.Product;
+import db.ProductFacade;
 
 /**
  *

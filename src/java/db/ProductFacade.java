@@ -5,39 +5,21 @@
  */
 package db;
 
-import java.security.NoSuchAlgorithmException;
+import db.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import utils.Hasher;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Cuong
  */
-public class AccountFacade {
-    public Account login(String email, String password) throws SQLException, NoSuchAlgorithmException{
-        Account account = null;
-        Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("select * from client where email = ? and password = ?");
-        stm.setString(1, email);
-        stm.setString(2, Hasher.hash(password));
-        ResultSet rs = stm.executeQuery();
-        if (rs.next()) {
-            account = new Account();
-            account.setId(rs.getInt("id"));
-            account.setEmail(rs.getString("email"));
-            account.setPassword(rs.getString("password"));
-        }
-        con.close();
-        return account;
-    }
-    
-    
-    
-    public void create(User user) throws SQLException {
+public class ProductFacade {
+    private List<Product> products = null;
+
+    public void create(Product product) throws SQLException {
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng statement
@@ -53,5 +35,18 @@ public class AccountFacade {
         
         int count = stm.executeUpdate();        
         con.close();
+    }
+    
+    public List<Product> select(){
+        return products;
+    }
+    
+    public Product select(int id){
+        for(Product product: products){
+            if(product.getId() == id){
+                return product;
+            }
+        }
+        return null;
     }
 }

@@ -1,0 +1,174 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 3, 2023, 10:55:09 AM
+    Author     : visao
+*/
+
+/* Style for banner section */
+body {
+    background-image: url(../images/br-01.jpg); /* đường dẫn tới hình ảnh */
+    background-size: cover; /* phóng to hình ảnh để lấp đầy nền */
+}
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+    background-image: url('../images/bn-01.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.banner-content {
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.banner-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.banner-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: #48D1CC;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.banner .detail-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+
+.banner .detail-box h2 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.banner .detail-box p {
+    font-size: 1.5rem;
+}
+
+.banner .btn-box a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: 2px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.banner .btn-box a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.product-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 30px; /* khoảng cách dưới của mỗi box */
+    border-radius: 10px;
+}
+
+.product-box img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+     border-radius: 10px;
+}
+
+.product-box h5 {
+    margin: 0;
+    text-align: center;
+}
+
+.product-box p {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.product-box .btn {
+    display: none;
+    margin-top: 10px;
+}
+
+.product-box:hover .btn {
+    display: block;
+}
+
+.product-box:hover p {
+    display: none;
+}
+
+
+/*footer*/
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 50px 0;
+}
+
+footer h3 {
+    color: #fff;
+}
+
+footer ul li {
+    padding: 5px 0;
+}
+
+footer ul li i {
+    color: #48D1CC;
+    margin-right: 10px;
+}
+
+footer a {
+    color: #fff;
+}
+
+footer a:hover {
+    color: #48D1CC;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+footer hr {
+    border-color: #48D1CC;
+    opacity: 0.5;
+}
+
+
+

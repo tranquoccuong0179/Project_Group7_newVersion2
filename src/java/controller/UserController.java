@@ -85,10 +85,6 @@ public class UserController extends HttpServlet {
                         response.sendRedirect(request.getContextPath() + "/home/index.do");
                     }
                     break;
-                case "cancel":
-                    //quay về trang chủ(Home page)
-                    response.sendRedirect(request.getContextPath() + "/home/index.do");
-                    break;
             }
         } catch (Exception ex) {
             //quay về login form để thông báo lỗi
