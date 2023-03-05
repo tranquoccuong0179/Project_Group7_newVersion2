@@ -43,7 +43,8 @@
                         </c:if>
                             <c:if test="${sessionScope.user != null}">
                                 <!--Nếu đã login-->
-                                Welcome ${sessionScope.user.fullName} |
+                                Welcome ${user.fullName} |
+                                <a href="<c:url value="/user/index.do" />">Profile</a>
                                 <a href="<c:url value="/user/logout.do" />">Log out</a>
                             </c:if>
                     </span>

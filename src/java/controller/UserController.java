@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -10,6 +10,11 @@ import db.AccountFacade;
 import db.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,6 +60,20 @@ public class UserController extends HttpServlet {
             case "logout":
                 logout(request, response);
                 break;
+            case "index":
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
+            case "edit":
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
+            case "edit_handler":
+                edit_handler(request, response);
+                break;
+            case "change":
+                request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                break;
+            case "change_handler":
+                change_handler(request, response);
             default:
             //Show error page
         }
@@ -119,11 +138,11 @@ public class UserController extends HttpServlet {
 
                     } else {
                         password = Hasher.hash(password);
-                      
+
                         //Tạo đối tượng account
                         User user = new User(0, email, password, fullName, phone, address, phone);
                         //Lưu account vào request đê bảo tồn trạng thái của form
-                       
+
                         AccountFacade af = new AccountFacade();
                         af.create(user);
 
@@ -134,6 +153,94 @@ public class UserController extends HttpServlet {
                 }
                 break;
         }
+    }
+
+    protected void edit_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String op = request.getParameter("op");
+        switch (op) {
+            case "edit":
+                try {
+                    //Lay data tu client
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    String email = request.getParameter("email");
+                    String pass = request.getParameter("pass");
+                    String name = request.getParameter("fullName");
+                    String address = request.getParameter("address");
+                    String phone = request.getParameter("phone");
+                    User user = new User(id, email, pass, name, "user", address, phone);
+
+                    //Hien edit form
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", user);
+                    //Cap nhat toy vao db
+                    AccountFacade af = new AccountFacade();
+                    af.update(user);
+                    //Hien danh sach toy
+                    response.sendRedirect(request.getContextPath() + "/user/index.do");
+
+                } catch (SQLException ex) {
+                    //Show the error page
+                    /*
+                    //C1: bad
+                    request.setAttribute("message", ex.getMessage());
+                    request.setAttribute("controller", "error");
+                    request.setAttribute("action", "error");
+                    request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                     */
+                    //C2:
+                    //Show the error page
+                    ex.printStackTrace();//In chi tiet ve ngoai le cho developer
+                    request.setAttribute("message", "Can not save this toy. Please check the toy data.");
+                    request.setAttribute("action", "edit");
+                    request.getRequestDispatcher(Config.LAYOUT).forward(request, response);
+                }
+                break;
+            case "cancel":
+                response.sendRedirect(request.getContextPath() + "/user/index.do");
+                break;
+        }
+    }
+    protected void change_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String op = request.getParameter("op");
+        switch(op){
+            case "change":
+                String oldPass = request.getParameter("oldPass");
+                
+                String newPass = request.getParameter("newPass");
+                String confirmNewPass = request.getParameter("confirmNewPass");
+                int id = Integer.parseInt(request.getParameter("id"));
+                String pass = request.getParameter("pass");
+                try {
+                    oldPass = Hasher.hash(oldPass);
+                    if(oldPass.equals(pass) && newPass.equals(confirmNewPass)){
+                        HttpSession session = request.getSession();
+                        User user = (User) session.getAttribute("user");
+                        user.setPassword(Hasher.hash(newPass));
+                        session.setAttribute("user", user);
+                        AccountFacade af = new AccountFacade();
+                        af.changePassword(id, newPass);
+                        
+                         
+                        
+                        
+                        response.sendRedirect(request.getContextPath() + "/home/index.do");
+                        
+                    }
+                    else {
+                        request.setAttribute("message", "wrong pass");
+                        response.sendRedirect(request.getContextPath() + "/user/change.do");
+                    }
+                    
+                } catch (Exception e) {
+                }
+                break;
+            case "cancel":
+                response.sendRedirect(request.getContextPath() + "/user/index.do");
+                break;
+        }
+                
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
